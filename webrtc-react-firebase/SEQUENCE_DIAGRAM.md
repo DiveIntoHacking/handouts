@@ -46,15 +46,18 @@ database シグナリングサーバ
 
 太郎 -> 太郎: 花子のSDPを保存
 
-== candidateの送受信を何度か行う ==
+== candidate(通信経路)の送受信を何度か行う ==
 
-太郎 -> シグナリングサーバ: 通信経路(candidate)を送信する。
-花子 <- シグナリングサーバ: 通信経路(candidate)を受信する。
-花子 <- 花子: 受信した通信経路(candidate)を登録する。
+STUNサーバ -> 太郎: candidateを取得する。
+STUNサーバ -> 花子: candidateを取得する。
 
-花子 -> シグナリングサーバ: 通信経路(candidate)を送信する。
-太郎 <- シグナリングサーバ: 通信経路(candidate)を受信する。
-太郎 <- 太郎: 受信した通信経路(candidate)を登録する。
+太郎 -> シグナリングサーバ: candidateを転送する。
+花子 <- シグナリングサーバ: candidateを転送する。
+花子 <- 花子: 受信したcandidateを登録する。
+
+花子 -> シグナリングサーバ: candidateを送信する。
+太郎 <- シグナリングサーバ: candidateを受信する。
+太郎 <- 太郎: 受信したcandidateを登録する。
 
 
 note over 太郎, 花子
